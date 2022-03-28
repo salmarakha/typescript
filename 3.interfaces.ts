@@ -44,16 +44,16 @@ let obj = {
 
 /* An example use case: if you're working on a large class with other developers and you want to prevent others from 
     changing the values of a property */
-// class X {
-//     prop = {
-//         name: "foo",
-//         age: 5
-//         arr: [1, 2, 3]
-//     } as const;
-//     getAll() {
-//         this.prop.age = 50; // this line throws an error
-//     }
-// }
+class X {
+    prop = {
+        name: "foo",
+        age: 5,
+        arr: [1, 2, 3]
+    } as const;
+    getAll() {
+        // this.prop.age = 50; // cannot assign age because it's read-only
+    }
+}
 
 // this is not the same as: (there is a difference between mutating and re-assigning a variable)
 const obj1 = {
