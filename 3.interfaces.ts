@@ -14,6 +14,10 @@ interface Job {
     title: string,
     company: string
 }
+
+// we can generate a string literal of interface keys  using keyof
+type JobKeys = keyof Job; // 'title' | 'company'
+
 // extends is used with interfaces instead of intersction
 // you can extend multiple interfaces (general rule)
 interface Employee extends Person, Job {
