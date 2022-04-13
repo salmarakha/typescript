@@ -7,6 +7,7 @@ let score: number = 5;
 let values: string[] = ["foo", "bar"]; 
 let colors: [string, string, string] = ['#ff0000', '#00ff00', '#0000ff']; // tuple (fixed size and data types)
 
+
 /** functions
  * you can skip the difinition of the return type
 */
@@ -22,6 +23,10 @@ console.log(getFullname("Salma", "Rakha"));
 */
 let color: [string, string, string] | null = null; 
 let user: (string | number)[] = ["Ben", 18]; // allow arrays to accept multiple types
+
+// String literal types are often used with unions. 
+// A string literal can only be assigned a particular string value. It can be considered a subtype of a string type.
+type UserRole = 'admin' | 'moderator' | 'author';
 
 /** TYPE ALIAS
  * what if we want to reuse the color variable type or give it a meaningful name:
