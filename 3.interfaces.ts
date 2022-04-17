@@ -5,11 +5,11 @@
  * you can prefix any property in an interface with 'readonly' to declare as an immutable property
  */
 interface Person {
-    name: string,
-    age: number,
-    nationality?: string
-    // nationality: string | null
-}
+    name: string;
+    readonly age: number;
+    nationality?: string;
+    // nationality: string | null;
+} 
 interface Job {
     title: string,
     company: string
@@ -43,8 +43,13 @@ console.log(emp);
 // ** Tip: you can use 'as const' to prevent users from changing any property in an object (all properties are readonly)
 let obj = {
     name: "Salma",
-    age: 22
+    age: 24
 } as const;
+const objj = {
+    name: "Salma",
+    age: 24
+}
+// objj.name =""
 
 /* An example use case: if you're working on a large class with other developers and you want to prevent others from 
     changing the values of a property */
