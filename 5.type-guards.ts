@@ -12,12 +12,12 @@ class Bird {
     name: string;
     constructor(name: string) { this.name = name; }
     fly () {
-        console.log("Swim");
+        console.log("fly");
     }
 }
 
 function getRandomPet () {
- const pets: (Fish | Bird)[] = [new Fish("Whale"), new Bird("Eagle")];
+ const pets: (Fish | Bird)[] = [new Fish("Tuna"), new Bird("Eagle")];
  const index = Math.round(Math.random());
  return pets[index];
 }
@@ -46,17 +46,18 @@ if (fishPet.swim) {
 
 // 2. Type predicates
 // To define a type guard, we simply need to define a function whose return type is a type predicate:
-function isFish(pet: Fish | Bird): pet is Fish {
+function isFish(pet: Fish | Bird): pet is Fish { 
     return (pet as Fish).swim !== undefined;
 }
-/* pet is Fish is our type predicate in this example. A predicate takes the form parameterName is Type, where 
+/* pet is Fish is our type predicate in this example. A predicate takes the form 'parameterName is Type', where 
  parameterName must be the name of a parameter from the current function signature. */
 /* Any time isFish is called with some variable, TypeScript will narrow that variable to that 
  specific type if the original type is compatible. */
 
 // Both calls to 'swim' and 'fly' are now okay.
-if (isFish(pet1)) {
+if (isFish(pet1)) { //true
   pet1.swim();
+  pet1.name ="kjgl"
 } else {
   pet1.fly();
 }
@@ -75,15 +76,17 @@ function isNumber(x: any): x is number {
 }
    
 function isString(x: any): x is string {
-    return typeof x === "string";
+  return typeof x === "string";
 }
    
 function padLeft(value: string, padding: string | number) {
+    console.log(isNumber(padding))
     if (isNumber(padding)) {
-        return Array(padding + 1).join(" ") + value; // inserts empty space
+      console.log(padding + 10); //12
+      return Array(padding + 1).join(" ") + value; // inserts empty space
     }
     if (isString(padding)) {
-        return padding + value;
+      return padding + value;
     }
     throw new Error(`Expected string or number, got '${padding}'.`);
 }

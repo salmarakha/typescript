@@ -20,16 +20,16 @@ var Bird = /** @class */ (function () {
     return Bird;
 }());
 function getRandomPet() {
-    var pets = [new Fish("Whale"), new Bird("Eagle")];
+    var pets = [new Fish("Tuna"), new Bird("Eagle")];
     var index = Math.round(Math.random());
     return pets[index];
 }
 console.log(getRandomPet());
 var pet1 = getRandomPet();
 // 1. Using the in operator
-// if ("swim" in pet1) {
-//   pet1.swim();
-// }
+if ("swim" in pet1) {
+    pet1.swim();
+}
 // However, you cannot use property access
 // if (pet1.fly) {
 //   pet1.fly();
@@ -75,8 +75,10 @@ function isString(x) {
     return typeof x === "string";
 }
 function padLeft(value, padding) {
+    console.log(isNumber(padding));
     if (isNumber(padding)) {
-        return Array(padding + 1).join(" ") + value;
+        console.log(padding + 10);
+        return Array(padding + 1).join(" ") + value; // inserts empty space
     }
     if (isString(padding)) {
         return padding + value;
@@ -85,3 +87,8 @@ function padLeft(value, padding) {
 }
 console.log(padLeft("s", 2));
 console.log(padLeft("s", "a"));
+var t = 5;
+function isNumberr(x) {
+    return typeof x === "number";
+}
+isNumberr(5);

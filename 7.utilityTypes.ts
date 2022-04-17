@@ -33,10 +33,10 @@ const add2: Required<IAddress> = { city: "Dubai", street: "Sheikh Zayed Street" 
 
 // 3. Readonly<Type>
 // constructs a type with properties that can't be reassigned
-const todo: Readonly<Todo> = {
+const todo: Todo = {
     title: "Plan a trip",
     description: "Make a check-list of what to do"
-}
+} as const;
 // todo.description = "Anything"; 
 
 // 4. Record<Keys, Type>
@@ -92,20 +92,15 @@ const todoInfo: TodoInfo = {
 
 // 7. Exclude<UnionType, ExcludedMembers>
 // Constructs a type by excluding from UnionType all union members that are assignable to ExcludedMembers.
-type T0 = Exclude<"a" | "b" | "c", "a">;
+type T0 = Exclude<"a" | "b" | "c", "a">; // 'b' | 'c'
      
-type T1 = Exclude<"a" | "b" | "c", "a" | "b">;
+type T1 = Exclude<"a" | "b" | "c", "a" | "b">; // "c"
      
-type T2 = Exclude<string | number | (() => void), Function>;
+type T2 = Exclude<string | number | (() => void), Function>; // string | number
 
-// 8. Extract<Type, Union>
-// Constructs a type by extracting from Type all union members that are assignable to Union.
-type T3 = Extract<"a" | "b" | "c", "a" | "f">;
-     
-type T4 = Extract<string | number | (() => void), Function>;
 
-// 9. NonNullable<Type>
+// 8. NonNullable<Type>
 // Constructs a type by excluding null and undefined from Type.
-type T5 = NonNullable<string | number | undefined>;
+type T5 = NonNullable<string | number | undefined>; // string | number
      
-type T6 = NonNullable<string[] | null | undefined>;
+type T6 = NonNullable<string[] | null | undefined>; // string[]

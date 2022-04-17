@@ -3,15 +3,16 @@
 function peek (arr: number[]): number {
     return arr[arr.length - 1];
 }
-const arr1 = [1, 2, 3, 4];
-console.log(peek(arr1)); 
+const numArr = [1, 2, 3, 4];
+console.log(peek(numArr)); // 4
 
-const arr2 = ['a', 'b', 'c'];
-// console.log(peek(arr2)) // peek only allows an array of numbers
+const strArr2 = ['a', 'b', 'c'];
+// console.log(peek(strArr2)) // peek only allows an array of numbers
 
 // what if we want to use peek with any type?
 // T represents type (any type)
 // any will work but you'll lose your type difinition (always avoid any)
+// t, Type,
 function genericPeek<T>(arr: T[]): T {
     return arr[arr.length - 1];
 }
@@ -20,16 +21,16 @@ function peekAny(arr: any[]): any {
     return arr[arr.length - 1];
 }
 
-console.log(genericPeek(arr1)); // type is pre defined: number[]
-console.log(genericPeek(arr2)); // type is pre defined: string[]
-console.log(peekAny(arr1)); // any[] : returns any
-console.log(peekAny(arr2)); // any[] : returns any
+console.log(genericPeek(numArr)); // type is pre defined: number[]
+console.log(genericPeek(strArr2)); // type is pre defined: string[]
+console.log(peekAny(numArr)); // any[] : returns any
+console.log(peekAny(strArr2)); // any[] : returns any
 
-// genericPeek(arr1).toUpperCase(); // throws an error at compilation
-genericPeek(arr2).toUpperCase();
+// genericPeek(numArr).toUpperCase(); // throws an error at compilation
+genericPeek(strArr2).toUpperCase();
 
-peekAny(arr1).toUpperCase(); // throws an error at runtime 
-peekAny(arr2).toUpperCase();
+peekAny(numArr).toUpperCase(); // throws an error at runtime 
+peekAny(strArr2).toUpperCase();
 
 // Generic constraint: ensure that an object contains certain properties 
 function addFullName<T extends {firstname: string, lastname: string}>(obj: T): T {
@@ -102,10 +103,6 @@ const getProduct = () :IResponse<Product> => {
 }
 
 const product = getProduct();
-console.log(product.data.name);
+console.log(product.data.price);
 
-// Generics with keyof
-
-
-// advanced: using class types in generics
 

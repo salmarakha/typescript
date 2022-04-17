@@ -2,7 +2,7 @@
 class Pet {
     // access modifiers: public default, private and readonly
     public name: string;
-    private age: number;
+    protected age: number;
     readonly species: string;
 
     // multiple constructor declaration is not allowed
@@ -21,7 +21,7 @@ class Pet {
 const pet = new Pet("Lucy", 3, "Golden Retriever");
 console.log(pet.getName());
 
-// pet.age // age is private can't be accessed direcly
+pet.name // age is private can't be accessed direcly
 
 // Inheritance
 class Dog extends Pet {
@@ -31,7 +31,7 @@ class Dog extends Pet {
 
     constructor (name: string, age: number, species: string, furColor: string, owner: string) {
         super(name, age, species); // inherits all poperties and methods from the base class except private ones
-        // this.age // compiler error (property is private) 
+        this.age // compiler error (property is private) 
         this.furColor = furColor;
         this.owner = owner;
     }
@@ -64,8 +64,11 @@ class MyElement {
     parent: string;
     children: string[];
 }
+interface child extends IPosition, IDimension {
 
-class MyImage extends MyElement implements IPosition, IDimension {
+}
+
+class MyImage extends MyElement implements child {
     height: number;
     maxHeight?: number;
     width: number;
@@ -79,7 +82,7 @@ class MyImage extends MyElement implements IPosition, IDimension {
     static count: number = 0;
 
     constructor (h: number, w: number, t: number, r: number, l: number, b: number) {
-        // this inside of the constructor refers to an instance of the class
+        // 'this' inside of the constructor refers to an instance of the class
         // to access static properties we must use the name of the class
         super() // to initialize properties from parent class
         this.height = h;
@@ -101,11 +104,13 @@ class MyImage extends MyElement implements IPosition, IDimension {
     };
 
     getParent (): string {
+        MyImage.count
         // this inside an instance function refers to the instance in which the method will be called on 
         return this.parent;
     }
 
     static getImagesCount(): number {
+
         // this inside of a static method refers to the class itself
         return this.count;
     }
@@ -121,4 +126,4 @@ const images: MyImage[] = [
     new MyImage(500, 200, 300, 50, 80, 50),
     new MyImage(200, 600, 100, 50, 80, 50)
 ];
-console.log(MyImage.getImagesCount());
+console.log(MyImage.getImagesCount()); // 4
